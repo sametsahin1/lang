@@ -1,0 +1,76 @@
+<div class="container my-5">
+  <h2 class="mb-4">Dil Yönetimi</h2>
+
+  <!-- Dil Ekleme Formu -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Yeni Dil Ekle</h5>
+      <form (ngSubmit)="addLanguage()" class="row g-3">
+        <div class="col-md-4">
+          <input type="text" class="form-control" placeholder="Dil Kodu (örn: fr)" 
+                 [(ngModel)]="newLanguage.code" name="code">
+        </div>
+        <div class="col-md-4">
+          <input type="text" class="form-control" placeholder="Dil Adı (örn: Français)" 
+                 [(ngModel)]="newLanguage.name" name="name">
+        </div>
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-primary">Ekle</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Çeviri Ekleme Formu -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Yeni Çeviri Ekle</h5>
+      <div class="row">
+        <div class="col-md-3 mb-3">
+          <label class="form-label">Anahtar</label>
+          <input type="text" class="form-control" placeholder="Örn: header.title" 
+                 [(ngModel)]="newTranslation.key">
+        </div>
+        <div class="col-md-3 mb-3" *ngFor="let lang of languages">
+          <label class="form-label">{{lang.name}}</label>
+          <input type="text" class="form-control" [placeholder]="lang.name + ' çevirisi'" 
+                 [(ngModel)]="newTranslation.translations[lang.code]">
+        </div>
+      </div>
+      <button class="btn btn-primary mt-3" (click)="addTranslation()">Çeviri Ekle</button>
+    </div>
+  </div>
+
+  <!-- Mevcut Çeviriler -->
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Mevcut Çeviriler</h5>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Anahtar</th>
+              <th *ngFor="let lang of languages">{{lang.name}}</th>
+              <th>İşlemler</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let key of getAllKeys()">
+              <td>{{key}}</td>
+              <td *ngFor="let lang of languages">
+                <input type="text" class="form-control" 
+                       [(ngModel)]="translations[languages.indexOf(lang)].translations[key]"
+                       (change)="updateTranslation(key, lang.code, translations[languages.indexOf(lang)].translations[key])">
+              </td>
+              <td>
+                <button class="btn btn-danger btn-sm" (click)="deleteTranslationKey(key)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div> 

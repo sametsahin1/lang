@@ -1,0 +1,96 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12 text-center mb-5">
+      <h1 class="display-3 fw-bold text-primary">{{texts['title'] || 'Contact'}}</h1>
+      <p class="lead fs-3 text-secondary">{{texts['subtitle'] || 'Reach Us'}}</p>
+      <div class="divider my-4">
+        <span class="divider-line bg-primary"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-md-6">
+      <div class="card border-0 shadow-lg">
+        <div class="card-body p-5">
+          <p class="card-text fs-5 text-secondary lh-lg">{{texts['content'] || 'Loading...'}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-8">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <div class="d-flex flex-column">
+            <div class="mb-4">
+              <i class="bi bi-geo-alt text-primary me-3" style="font-size: 1.5rem;"></i>
+              <span class="fs-5">{{texts['contact']?.['address']}}</span>
+            </div>
+            <div class="mb-4">
+              <i class="bi bi-building text-primary me-3" style="font-size: 1.5rem;"></i>
+              <span class="fs-5">{{texts['contact']?.['city']}}</span>
+            </div>
+            <div class="mb-4">
+              <i class="bi bi-envelope text-primary me-3" style="font-size: 1.5rem;"></i>
+              <span class="fs-5">{{texts['contact']?.['email']}}</span>
+            </div>
+            <div>
+              <i class="bi bi-telephone text-primary me-3" style="font-size: 1.5rem;"></i>
+              <span class="fs-5">{{texts['contact']?.['phone']}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h3 class="card-title mb-4">
+            {{texts['hours']?.['title'] || 'Working Hours'}}
+          </h3>
+          <div class="d-flex flex-column">
+            <div class="mb-3">
+              <i class="bi bi-clock text-primary me-2"></i>
+              {{texts['hours']?.['weekdays'] || 'Loading...'}}
+            </div>
+            <div>
+              <i class="bi bi-calendar text-primary me-2"></i>
+              {{texts['hours']?.['weekend'] || 'Loading...'}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.divider {
+  position: relative;
+  height: 4px;
+  max-width: 100px;
+  margin: 0 auto;
+}
+
+.divider-line {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.hover-card {
+  transition: transform 0.3s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+}
+
+.contact-info i, .working-hours i {
+  width: 24px;
+}
+</style> 
